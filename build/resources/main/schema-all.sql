@@ -1,7 +1,0 @@
-DROP TABLE builds IF EXISTS;
-
-CREATE TABLE builds  (
-    build_id BIGINT IDENTITY NOT NULL PRIMARY KEY,
-    toolbox VARCHAR(20),
-    ctf VARCHAR(20)
-);
