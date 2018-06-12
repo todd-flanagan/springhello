@@ -1,3 +1,7 @@
 https://github.com/pkainulainen/spring-batch-examples/tree/master/spring
 https://www.petrikainulainen.net/programming/spring-framework/spring-batch-tutorial-getting-the-required-dependencies-with-gradle/
 https://spring.io/guides/gs/batch-processing/
+
+
+https://stackoverflow.com/questions/31329421/how-start-the-batch-from-rest-service-the-afterjob-runs-but-enablebatchprocessi
+https://stackoverflow.com/questions/25122103/how-to-select-which-spring-batch-job-to-run-based-on-application-argument-spri
