@@ -2,6 +2,8 @@ package hello;
 
 import java.io.IOException;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -19,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
+import java.util.Arrays;
 
 import hello.storage.StorageFileNotFoundException;
 import hello.storage.StorageService;
@@ -26,6 +30,8 @@ import hello.storage.StorageService;
 
 @Controller
 public class FileUploadController {
+
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     private final StorageService storageService;
 
@@ -65,6 +71,14 @@ public class FileUploadController {
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
+
+        //post new file to build table, processed with batch job later
+        String ctfName = file.getOriginalFilename().replace(".mltbx",".ctf");
+        log.info(String.format("Inserting builds record for %s %s", file.getOriginalFilename(), ctfName));
+        String pair[]  = new String[]{file.getOriginalFilename(), ctfName};
+        List<Object[]> names = Arrays.<Object []>asList(pair);
+
+        jdbcTemplate.batchUpdate("INSERT INTO builds (toolbox, ctf) VALUES (?,?)", names);
 
 
         return "redirect:/";
