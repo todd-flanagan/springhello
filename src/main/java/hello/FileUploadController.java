@@ -18,14 +18,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import hello.storage.StorageFileNotFoundException;
 import hello.storage.StorageService;
+
 
 @Controller
 public class FileUploadController {
 
     private final StorageService storageService;
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     @Autowired
     public FileUploadController(StorageService storageService) {
@@ -59,6 +64,8 @@ public class FileUploadController {
         storageService.store(file);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
+
+
 
         return "redirect:/";
     }
