@@ -37,6 +37,9 @@ public class Application implements CommandLineRunner{
          jdbcTemplate.execute("CREATE TABLE builds(" +
                  "id SERIAL, toolbox VARCHAR(255), ctf VARCHAR(255))");
 
+         jdbcTemplate.execute("DROP TABLE completedbuilds IF EXISTS");
+         jdbcTemplate.execute("CREATE TABLE completedbuilds(" +
+                 "id SERIAL, toolbox VARCHAR(255), ctf VARCHAR(255))");
      }
 
 

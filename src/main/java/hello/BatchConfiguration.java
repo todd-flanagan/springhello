@@ -22,6 +22,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
+import org.springframework.batch.item.database.JdbcCursorItemReader;
 
 @Configuration
 @EnableBatchProcessing
@@ -33,17 +35,17 @@ public class BatchConfiguration {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
+    @Autowired
+    public BuildRowMapper rowMapper;
+
     // tag::readerwriterprocessor[]
     @Bean
-    public FlatFileItemReader<Build> reader() {
-        return new FlatFileItemReaderBuilder<Build>()
+    public JdbcCursorItemReader<Build> reader(DataSource dataSource) {
+        return new JdbcCursorItemReaderBuilder<Build>()
             .name("buildItemReader")
-            .resource(new ClassPathResource("sample-data.csv"))
-            .delimited()
-            .names(new String[]{"toolbox", "ctf"})
-            .fieldSetMapper(new BeanWrapperFieldSetMapper<Build>() {{
-                setTargetType(Build.class);
-            }})
+            .sql("Select toolbox, ctf from builds")
+            .dataSource(dataSource)
+            .rowMapper(rowMapper)
             .build();
     }
 
@@ -56,7 +58,7 @@ public class BatchConfiguration {
     public JdbcBatchItemWriter<Build> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Build>()
             .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-            .sql("INSERT INTO builds (toolbox, ctf) VALUES (:toolbox, :ctf)")
+            .sql("INSERT INTO completedbuilds (toolbox, ctf) VALUES (:toolbox, :ctf)")
             .dataSource(dataSource)
             .build();
     }
@@ -74,10 +76,10 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public Step step1(JdbcBatchItemWriter<Build> writer) {
+    public Step step1(JdbcCursorItemReader<Build> reader, JdbcBatchItemWriter<Build> writer) {
         return stepBuilderFactory.get("step1")
             .<Build, Build> chunk(10)
-            .reader(reader())
+            .reader(reader)
             .processor(processor())
             .writer(writer)
             .build();
