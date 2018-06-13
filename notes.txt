@@ -2,12 +2,10 @@
 +file upload
 +batch execution
 +restful batch kickoff
++fileupload write file location to database
++batch processing the database on an event
 
-
--fileupload write file location to database
--batch processing the database on an event
-
-
-
-
-https://www.petrikainulainen.net/programming/spring-framework/spring-batch-tutorial-writing-information-to-a-database-with-jdbc/
+-UI to show whats in queue, whats been done
+-hook up actual build
+-get on vm
+-integrate with ref arch
