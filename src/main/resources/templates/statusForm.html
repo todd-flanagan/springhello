@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link href="../../static/css/spring-core.css"
+          th:href="@{/css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+
+
+<body>
+  <div class="container">
+    <div th:if="${not #lists.isEmpty(builds)}" >
+      <h2> Builds </h2>
+      <table class="table table-striped">
+        <tr>
+          <th>Toolbox </th>
+          <th>CTF</th>
+       </tr>
+
+       <tr th:each="build : ${builds}">
+         <td: th:text="${build.toolbox}"/>
+         <td: th:text="${build.ctf}"/>
+       </tr>
+
+     </table>
+    </div>
+  </div>
+</body>
+
+</html>

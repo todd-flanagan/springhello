@@ -13,19 +13,19 @@ public class Build {
         this.ctf = ctf;
     }
 
-    public void settoolbox(String toolbox) {
+    public void setToolbox(String toolbox) {
         this.toolbox = toolbox;
     }
 
-    public String gettoolbox() {
+    public String getToolbox() {
         return toolbox;
     }
 
-    public String getctf() {
+    public String getCtf() {
         return ctf;
     }
 
-    public void setctf(String ctf) {
+    public void setCtf(String ctf) {
         this.ctf = ctf;
     }
 

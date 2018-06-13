@@ -11,8 +11,8 @@ public class BuildItemProcessor implements ItemProcessor<Build, Build> {
 
     @Override
     public Build process(final Build build) throws Exception {
-        final String toolbox = build.gettoolbox().toUpperCase();
-        final String ctf = build.getctf().toUpperCase();
+        final String toolbox = build.getToolbox().toUpperCase();
+        final String ctf = build.getCtf().toUpperCase();
 
         final Build transformedBuild = new Build(toolbox, ctf);
 

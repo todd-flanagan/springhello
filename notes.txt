@@ -9,3 +9,6 @@
 -hook up actual build
 -get on vm
 -integrate with ref arch
+
+
+https://springframework.guru/displaying-list-of-objects-in-table-using-thymeleaf/
