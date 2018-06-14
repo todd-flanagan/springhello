@@ -25,8 +25,10 @@ public class StatusController {
 
     @RequestMapping("/status")
     public String listBuilds(Model model) {
-        model.addAttribute("builds", Arrays.<Build>asList(new Build[]{new Build("toolbox1","ctf1"), new Build("toolbox2","ctf2")}));
-        //model.addAttribute(buildService.listAllBuilds());
+        //model.addAttribute("builds", Arrays.<Build>asList(new Build[]{new Build("toolbox1","ctf1"), new Build("toolbox2","ctf2")}));
+        model.addAttribute("queuedbuilds", buildService.listQueuedBuilds());
+        model.addAttribute("completedbuilds", buildService.listCompletedBuilds());
+
         return "statusTable";
     }
 }
