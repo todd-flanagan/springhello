@@ -43,7 +43,7 @@ public class BatchConfiguration {
     public JdbcCursorItemReader<Build> reader(DataSource dataSource) {
         return new JdbcCursorItemReaderBuilder<Build>()
             .name("buildItemReader")
-            .sql("Select toolbox, ctf from builds")
+            .sql("Select id, toolbox, ctf from builds")
             .dataSource(dataSource)
             .rowMapper(rowMapper)
             .build();

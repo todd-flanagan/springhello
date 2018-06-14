@@ -2,15 +2,21 @@ package hello;
 
 public class Build {
 
+    private long ID;
     private String toolbox;
     private String ctf;
 
     public Build() {
     }
 
-    public Build(String toolbox, String ctf) {
+    public Build(long ID, String toolbox, String ctf) {
+        this.ID = ID;
         this.toolbox = toolbox;
         this.ctf = ctf;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public void setToolbox(String toolbox) {
@@ -19,6 +25,10 @@ public class Build {
 
     public String getToolbox() {
         return toolbox;
+    }
+
+    public long getID() {
+        return ID;
     }
 
     public String getCtf() {
@@ -31,7 +41,7 @@ public class Build {
 
     @Override
     public String toString() {
-        return "toolbox: " + toolbox + ", ctf: " + ctf;
+        return "ID:  " + new Long(ID).toString() + ", toolbox: " + toolbox + ", ctf: " + ctf;
     }
 
 }

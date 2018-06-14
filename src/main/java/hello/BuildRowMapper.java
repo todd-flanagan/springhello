@@ -12,10 +12,8 @@ public class BuildRowMapper implements RowMapper<Build> {
 	@Override
 	public Build mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-		Build b = new Build();
+		Build b = new Build(rs.getLong("id"), rs.getString("toolbox"), rs.getString("ctf"));
 
-		b.setToolbox(rs.getString("toolbox"));
-		b.setCtf(rs.getString("ctf"));
 
 		return b;
 	}

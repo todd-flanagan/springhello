@@ -27,8 +27,8 @@ public class BuildService{
 
 
       jdbcTemplate.query(
-              "SELECT toolbox, ctf FROM builds",
-              (rs, rowNum) -> new Build(rs.getString("toolbox"), rs.getString("ctf"))
+              "SELECT id, toolbox, ctf FROM builds",
+              (rs, rowNum) -> new Build(rs.getLong("id"), rs.getString("toolbox"), rs.getString("ctf"))
       ).forEach(build -> builds.add(build));
 
       return builds;
@@ -41,8 +41,8 @@ public class BuildService{
 
 
       jdbcTemplate.query(
-              "SELECT toolbox, ctf FROM completedbuilds",
-              (rs, rowNum) -> new Build(rs.getString("toolbox"), rs.getString("ctf"))
+              "SELECT id, toolbox, ctf FROM completedbuilds",
+              (rs, rowNum) -> new Build(rs.getLong("id"), rs.getString("toolbox"), rs.getString("ctf"))
       ).forEach(build -> builds.add(build));
 
       return builds;

@@ -5,11 +5,9 @@
 +fileupload write file location to database
 +batch processing the database on an event
 +UI to show whats in queue, whats been done
++remove completed records
 
--remove completed records
 -hook up actual build
 -get on vm
 -integrate with ref arch
 -file upload as restful service
-
-https://stackoverflow.com/questions/9460789/deleting-records-through-spring-batch
