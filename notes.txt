@@ -11,3 +11,6 @@
 -hook up actual build
 -get on vm
 -integrate with ref arch
+- write files to and from S3 bucket
+- deployer service on ref arch (from bucket)
+- 
