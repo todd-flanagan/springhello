@@ -6,8 +6,8 @@
 +batch processing the database on an event
 +UI to show whats in queue, whats been done
 +remove completed records
++ add restfull call for uploader
 
 -hook up actual build
 -get on vm
 -integrate with ref arch
--file upload as restful service
