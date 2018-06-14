@@ -27,6 +27,6 @@ public class StatusController {
     public String listBuilds(Model model) {
         model.addAttribute("builds", Arrays.<Build>asList(new Build[]{new Build("toolbox1","ctf1"), new Build("toolbox2","ctf2")}));
         //model.addAttribute(buildService.listAllBuilds());
-        return "status1";
+        return "statusTable";
     }
 }
